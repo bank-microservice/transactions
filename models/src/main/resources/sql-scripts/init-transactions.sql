@@ -1,0 +1,3 @@
+INSERT INTO "transaction" (id, title, description, amount, "type", submitted, account_id) VALUES (1, 'Bankomat Dvig', 'NLB Ljubljana Siska.', 20.0, 1, TIMESTAMP '2017-03-01 11:23:38', 1);
+INSERT INTO "transaction" (id, title, description, amount, "type", submitted, account_id) VALUES (2, 'Bankomat Dvig', 'Gorenjska Banka Cerklje', 10.0, 1, TIMESTAMP '2017-04-12 01:12:38', 1);
+INSERT INTO "transaction" (id, title, description, amount, "type", submitted, account_id) VALUES (3, 'Položnica', 'Komunala Kranj', 24.4, 2, TIMESTAMP '2017-06-17 12:00:08', 3);
