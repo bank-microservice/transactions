@@ -60,7 +60,7 @@ public class Transaction {
         return amount;
     }
 
-    public void setAmount(double description) {
+    public void setAmount(double amount) {
         this.amount = amount;
     }
 
@@ -68,7 +68,7 @@ public class Transaction {
         return type;
     }
 
-    public void setType(int description) {
+    public void setType(int type) {
         this.type = type;
     }
 
