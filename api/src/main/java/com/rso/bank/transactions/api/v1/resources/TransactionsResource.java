@@ -1,6 +1,7 @@
 package com.rso.bank.transactions.api.v1.resources;
 
 import com.rso.bank.transactions.Transaction;
+import com.rso.bank.transactions.api.v1.configuration.RestProperties;
 import com.rso.bank.transactions.services.TransactionsBean;
 
 import javax.enterprise.context.ApplicationScoped;
@@ -20,6 +21,10 @@ public class TransactionsResource {
 
     @Context
     private UriInfo uriInfo;
+
+    @Inject
+    private RestProperties restProperties;
+
 
     @Inject
     private TransactionsBean transactionsBean;
@@ -88,5 +93,13 @@ public class TransactionsResource {
         } else {
             return Response.status(Response.Status.NOT_FOUND).build();
         }
+    }
+
+    @POST
+    @Path("healthy")
+    public Response setHealth(Boolean healthy) {
+        restProperties.setHealthy(healthy);
+        //log.info("Setting health to " + healthy);
+        return Response.ok().build();
     }
 }
