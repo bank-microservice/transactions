@@ -4,6 +4,7 @@ import com.rso.bank.transactions.Transaction;
 import com.rso.bank.transactions.api.v1.configuration.RestProperties;
 import com.rso.bank.transactions.services.TransactionsBean;
 
+import org.eclipse.microprofile.metrics.annotation.Metered;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import javax.ws.rs.*;
@@ -30,6 +31,7 @@ public class TransactionsResource {
     private TransactionsBean transactionsBean;
 
     @GET
+    @Metered
     public Response getTransactions() {
 
         List<Transaction> transactions = transactionsBean.getTransactions(uriInfo);
@@ -84,7 +86,7 @@ public class TransactionsResource {
 
     @DELETE
     @Path("{transactionId}")
-    public Response deleteCustomer(@PathParam("transactionId") String transactionId) {
+    public Response deleteTransaction(@PathParam("transactionId") String transactionId) {
 
         boolean deleted = transactionsBean.deleteTransaction(transactionId);
 
@@ -94,6 +96,23 @@ public class TransactionsResource {
             return Response.status(Response.Status.NOT_FOUND).build();
         }
     }
+
+    @POST
+    @Path("overload")
+    public Response overloadTransaction(Integer n) {
+
+        for (int i = 1; i <= n; i++) {
+            fibonacci(i);
+        }
+
+        return Response.status(Response.Status.OK).entity("overload finished").build();
+    }
+
+    private long fibonacci(int n) {
+        if (n <= 1) return n;
+        else return fibonacci(n - 1) + fibonacci(n - 2);
+    }
+
 
     @POST
     @Path("healthy")
