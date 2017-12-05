@@ -99,7 +99,13 @@ public class TransactionsResource {
     @Path("healthy")
     public Response setHealth(Boolean healthy) {
         restProperties.setHealthy(healthy);
-        //log.info("Setting health to " + healthy);
         return Response.ok().build();
+    }
+
+    @GET
+    @Path("healthy")
+    public Response getHealth() {
+        restProperties.isHealthy();
+        return Response.ok().entity(restProperties.isHealthy()).build();
     }
 }

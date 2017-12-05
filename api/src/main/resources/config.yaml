@@ -20,5 +20,5 @@ kumuluzee:
     checks:
       data-source-health-check:
         jndi-name: jdbc/TransactionsDS
-  rest-properties:
-    healthy: true
+rest-properties:
+  healthy: true
