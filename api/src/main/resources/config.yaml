@@ -20,5 +20,12 @@ kumuluzee:
     checks:
       data-source-health-check:
         jndi-name: jdbc/TransactionsDS
+  cors-filter:
+    servlet:
+      allow-origin: "*"
+  metrics:
+    web-instrumentation:
+      - name: transactions-endpoint
+        url-pattern: /v1/transactions/*
 rest-properties:
   healthy: true
