@@ -101,11 +101,12 @@ public class TransactionsResource {
     @Path("overload")
     public Response overloadTransaction(Integer n) {
 
+        long result = 0;
         for (int i = 1; i <= n; i++) {
-            fibonacci(i);
+            result += fibonacci(i);
         }
 
-        return Response.status(Response.Status.OK).entity("overload finished").build();
+        return Response.status(Response.Status.OK).entity(result).build();
     }
 
     private long fibonacci(int n) {
