@@ -10,9 +10,11 @@ import javax.persistence.EntityManager;
 import javax.ws.rs.NotFoundException;
 import javax.ws.rs.core.UriInfo;
 import java.util.List;
+import java.util.logging.Logger;
 
 @ApplicationScoped
 public class TransactionsBean {
+    private Logger log = Logger.getLogger(TransactionsBean.class.getName());
 
     @Inject
     private EntityManager em;
@@ -69,6 +71,24 @@ public class TransactionsBean {
         }
 
         return transaction;
+    }
+
+    public void setTransactionStatus(String transactionId, String status) {
+
+        Transaction transaction = em.find(Transaction.class, transactionId);
+
+        if (transaction == null) {
+            throw new NotFoundException();
+        }
+
+        try {
+            beginTx();
+            transaction.setStatus(status);
+            transaction = em.merge(transaction);
+            commitTx();
+        } catch (Exception e) {
+            rollbackTx();
+        }
     }
 
     public boolean deleteTransaction(String transactionId) {

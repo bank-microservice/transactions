@@ -8,6 +8,7 @@ import com.rso.bank.transactions.api.v1.configuration.RestProperties;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
+import java.util.logging.Logger;
 
 @Health
 @ApplicationScoped
@@ -16,6 +17,7 @@ public class TransactionServiceHealthCheck implements HealthCheck {
     @Inject
     private RestProperties restProperties;
 
+    private Logger log = Logger.getLogger(TransactionServiceHealthCheck.class.getName());
     @Override
     public HealthCheckResponse call() {
 

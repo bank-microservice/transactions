@@ -9,7 +9,7 @@ import java.util.Date;
 @NamedQueries(value =
         {
                 @NamedQuery(name = "Transaction.getAll", query = "SELECT t FROM transaction t"),
-                @NamedQuery(name = "Transaction.findByCustomer", query = "SELECT t FROM transaction t WHERE t.accountId = " +
+                @NamedQuery(name = "Transaction.findByTransaction", query = "SELECT t FROM transaction t WHERE t.accountId = " +
                         ":accountId")
         })
 @UuidGenerator(name = "idGenerator")
@@ -26,6 +26,8 @@ public class Transaction {
     private double amount;
 
     private int type;
+
+    private String status;
 
     private Date submitted;
 
@@ -86,5 +88,13 @@ public class Transaction {
 
     public void setSubmitted(Date submitted) {
         this.submitted = submitted;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 }

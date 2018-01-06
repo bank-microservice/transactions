@@ -1,0 +1,12 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: transaction
+  labels:
+    team: transactionteam
+spec:
+  selector:
+    matchLabels:
+      app: transaction
+  endpoints:
+  - port: server

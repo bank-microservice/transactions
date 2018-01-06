@@ -4,6 +4,7 @@ import com.rso.bank.transactions.Transaction;
 import com.rso.bank.transactions.api.v1.configuration.RestProperties;
 import com.rso.bank.transactions.services.TransactionsBean;
 
+import com.kumuluz.ee.logs.cdi.Log;
 import org.eclipse.microprofile.metrics.annotation.Metered;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
@@ -18,6 +19,7 @@ import java.util.List;
 @Path("/transactions")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
+@Log
 public class TransactionsResource {
 
     @Context
